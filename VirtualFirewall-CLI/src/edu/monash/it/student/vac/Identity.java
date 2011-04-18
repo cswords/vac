@@ -57,4 +57,8 @@ public abstract class Identity {
 		result.setName(name);
 		return result;
 	}
+
+	public String toString() {
+		return this.getIdentityType() + " " + this.getName();
+	}
 }

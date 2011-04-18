@@ -1,6 +1,7 @@
 package edu.monash.it.student.vac;
 
 import java.net.*;
+import java.util.*;
 
 public class NetworkService {
 
@@ -46,5 +47,23 @@ public class NetworkService {
 
 	public enum Protocol {
 		TCP, UDP
+	}
+
+	private Collection<AccessControlRule> acl = new Vector<AccessControlRule>();
+
+	Collection<AccessControlRule> getAclPool() {
+		return this.acl;
+	}
+
+	public AccessControlRule[] getAcl() {
+		AccessControlRule[] value = new AccessControlRule[this.acl.size()];
+		value = this.acl.toArray(value);
+		return value;
+	}
+
+	public String toString() {
+		String result = "service " + this.getId()
+				+ " " + this.getSocketAddress() + " " + this.getBaseProtocol() + " //" + this.getDescription();
+		return result;
 	}
 }

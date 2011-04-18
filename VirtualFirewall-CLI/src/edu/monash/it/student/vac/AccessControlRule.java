@@ -45,6 +45,9 @@ public class AccessControlRule extends AbstractRule {
 	}
 
 	public void setTarget(NetworkService target) {
+		if (this.getTarget() != null)
+			this.target.getAclPool().remove(this);
+		target.getAclPool().add(this);
 		this.target = target;
 	}
 
@@ -58,5 +61,10 @@ public class AccessControlRule extends AbstractRule {
 
 	public enum Operation {
 		DROP, REJECT, ACCEPT
+	}
+
+	public String toString() {
+		String result = this.operation + " " + this.getSource();
+		return result;
 	}
 }
