@@ -62,8 +62,32 @@ public class NetworkService {
 	}
 
 	public String toString() {
-		String result = "service " + this.getId()
-				+ " " + this.getSocketAddress() + " " + this.getBaseProtocol() + " //" + this.getDescription();
+		String result = "service " + this.getId() + " "
+				+ this.getSocketAddress() + " " + this.getBaseProtocol()
+				+ " //" + this.getDescription();
+		return result;
+	}
+
+	public static NetworkService parse(String input) {
+		String[] words = input.split(" ");
+		NetworkService result = null;
+
+		if (words.length >= 4) {
+			result = new NetworkService();
+			result.setBaseProtocol(Protocol.valueOf(words[3]));
+			String[] address = words[2].split(":");
+			try {
+				int port = Integer.parseInt(address[1]);
+				result.setSocketAddress(InetSocketAddress.createUnresolved(
+						address[0], port));
+			} catch (NumberFormatException e) {
+				return null;
+			}
+		}
+		String[] l = input.split("//");
+		if (l.length >= 2) {
+			result.setDescription(l[1]);
+		}
 		return result;
 	}
 }

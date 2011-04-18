@@ -1,7 +1,6 @@
 package edu.monash.it.student.vac;
 
 import java.util.*;
-import edu.monash.it.student.vac.*;
 
 public class RulePool {
 

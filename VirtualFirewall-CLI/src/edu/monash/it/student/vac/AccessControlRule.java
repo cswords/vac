@@ -1,5 +1,7 @@
 package edu.monash.it.student.vac;
 
+import edu.monash.it.student.vac.Identity.IdentityType;
+
 public class AccessControlRule extends AbstractRule {
 
 	protected Identity source;
@@ -66,5 +68,19 @@ public class AccessControlRule extends AbstractRule {
 	public String toString() {
 		String result = this.operation + " " + this.getSource();
 		return result;
+	}
+
+	public static AccessControlRule Parse(String input, NetworkService service) {
+		String[] words = input.split(" ");
+		AccessControlRule rule = new AccessControlRule();
+		if (words.length >= 3) {
+			rule.setOperation(Operation.valueOf(words[0]));
+			IdentityType type = IdentityType.valueOf(words[1]);
+			Identity i = Identity.Instance(type);
+			i.setName(words[2]);
+			rule.setSource(i);
+			rule.setTarget(service);
+		}
+		return rule;
 	}
 }

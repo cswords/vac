@@ -41,7 +41,7 @@ public class Test {
 		target2.setSocketAddress(InetSocketAddress.createUnresolved("testhost",
 				81));
 		target2.setId(0);
-		rule.setTarget(target2);
+		//rule.setTarget(target2);
 
 		pool.addService(target);
 		pool.addService(target2);
