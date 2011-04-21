@@ -34,6 +34,10 @@ public class RulePool {
 		return true;
 	}
 
+	public NetworkService getServiceById(int id) {
+		return this.services.get(id);
+	}
+
 	public void removeServiceAt(int id) {
 		services.remove(id);
 		for (int i = id; i < services.size(); i++) {

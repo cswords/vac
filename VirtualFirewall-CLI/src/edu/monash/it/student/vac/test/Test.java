@@ -29,6 +29,7 @@ public class Test {
 		NetworkService target = new NetworkService();
 		target.setBaseProtocol(Protocol.TCP);
 		target.setDescription("Test Web");
+		// notice: see the method, 'testhost' will never work because iptables will seek the ip first.
 		target.setSocketAddress(InetSocketAddress.createUnresolved("testhost",
 				80));
 		target.setId(0);

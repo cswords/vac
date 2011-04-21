@@ -12,11 +12,11 @@ public class AccessControlRule extends AbstractRule {
 
 	@Override
 	public String toIPTablesRule() {
-		// iptables -A OUTPUT -p tcp --dport 80 -m owner --uid-owner xyqin1 -j
-		// REJECT
+		// iptables -A OUTPUT -p TCP -d google.com --dport 80 -m owner
+		// --uid-owner xyqin1 -j DROP
 		String result = "iptables -A OUTPUT -p "
 				+ this.target.getBaseProtocol();
-		result += " --d " + target.getSocketAddress().getHostName();
+		result += " -d " + target.getSocketAddress().getHostName();
 		result += " --dport " + target.getSocketAddress().getPort();
 		result += " -m owner";
 		switch (source.getIdentityType()) {

@@ -17,6 +17,9 @@ public class NetworkService {
 		return socketAddress;
 	}
 
+	/*
+	 * Notice: IPTables will lookup a domain name before applying the policy on each IP of the domain.
+	 */
 	public void setSocketAddress(InetSocketAddress socketAddress) {
 		this.socketAddress = socketAddress;
 	}
