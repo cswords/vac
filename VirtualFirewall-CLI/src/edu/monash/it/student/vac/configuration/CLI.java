@@ -152,6 +152,44 @@ public class CLI {
 	}
 
 	public void parseApplyCommand(String line) {
-		// TODO
+		String[] words = line.split(" ");
+		if (words[0].equals(ApplyCommand)) {
+			try {
+				this.getContext().saveConfiguration();
+				String[] commands = this.getContext().getRulePool()
+						.toIPTablesRule().split("\n");
+				//commands = new String[] { "ping google.com" }; //test the output
+				for (String command : commands) {
+					String[] commandWords = command.split(" ");
+					Process child = Runtime.getRuntime().exec(commandWords);
+					pipeOutput(child);
+					child.waitFor();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
+
+	private static void pipeOutput(Process process) {
+		pipe(process.getErrorStream(), System.err);
+		pipe(process.getInputStream(), System.out);
+	}
+
+	private static void pipe(final InputStream src, final PrintStream dest) {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					byte[] buffer = new byte[1024];
+					for (int n = 0; n != -1; n = src.read(buffer)) {
+						dest.write(buffer, 0, n);
+					}
+				} catch (IOException e) { // just exit
+				}
+			}
+		}).start();
+	}
+
 }
