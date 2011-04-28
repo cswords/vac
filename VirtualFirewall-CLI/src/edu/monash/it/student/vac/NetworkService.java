@@ -3,6 +3,8 @@ package edu.monash.it.student.vac;
 import java.net.*;
 import java.util.*;
 
+import edu.monash.it.student.util.EnumHelper;
+
 public class NetworkService {
 
 	InetSocketAddress socketAddress;
@@ -18,7 +20,8 @@ public class NetworkService {
 	}
 
 	/*
-	 * Notice: IPTables will lookup a domain name before applying the policy on each IP of the domain.
+	 * Notice: IPTables will lookup a domain name before applying the policy on
+	 * each IP of the domain.
 	 */
 	public void setSocketAddress(InetSocketAddress socketAddress) {
 		this.socketAddress = socketAddress;
@@ -48,8 +51,8 @@ public class NetworkService {
 		this.baseProtocol = baseProtocol;
 	}
 
-	public enum Protocol {
-		TCP, UDP
+	public static enum Protocol {
+		TCP, UDP;
 	}
 
 	private Collection<AccessControlRule> acl = new Vector<AccessControlRule>();
@@ -77,9 +80,9 @@ public class NetworkService {
 
 		if (words.length >= 4) {
 			result = new NetworkService();
-			result.setBaseProtocol(Protocol.valueOf(words[3]));
-			String[] address = words[2].split(":");
 			try {
+				result.setBaseProtocol(EnumHelper.valueOf(Protocol.class, words[3]));
+				String[] address = words[2].split(":");
 				int port = Integer.parseInt(address[1]);
 				result.setSocketAddress(InetSocketAddress.createUnresolved(
 						address[0], port));

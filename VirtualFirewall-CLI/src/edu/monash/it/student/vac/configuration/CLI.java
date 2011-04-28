@@ -28,12 +28,12 @@ public class CLI {
 			String line = null;
 			System.out.print("VAC>");
 			while (!(line = input.readLine()).trim().equals(ExitCommand + "!")) {
-				instance.parseShowCommand(line);
-				instance.parseServiceCommand(line);
-				instance.parseUseCommand(line);
-				instance.parseAclCommand(line);
-				instance.parseExitCommand(line);
-				instance.parseApplyCommand(line);
+				getCurrent().parseShowCommand(line);
+				getCurrent().parseServiceCommand(line);
+				getCurrent().parseUseCommand(line);
+				getCurrent().parseAclCommand(line);
+				getCurrent().parseExitCommand(line);
+				getCurrent().parseApplyCommand(line);
 				// //////////////
 				if (getCurrent().getCurrentService() == null)
 					System.out.print("VAC>");
@@ -77,18 +77,25 @@ public class CLI {
 	 */
 	public void parseExitCommand(String line) {
 		String[] words = line.split(" ");
-		if (words.length > 0)
-			if (words[0].equals(ShowCommand)) {
-				System.out.println(this.getContext().getRulePool().toString());
-			}
+		if (words[0].equals(ExitCommand)) {
+			this.setCurrentService(null);
+		}
 	}
 
 	/*
 	 * sample: show WTF$%^^ &**_
 	 */
 	public void parseShowCommand(String line) {
-		if (line.equals(ExitCommand)) {
-			this.setCurrentService(null);
+		String[] words = line.split(" ");
+		if (words[0].equals(ShowCommand)) {
+			if (words.length > 1) {
+				if (words[1].equals("iptables")) {
+					System.out.println(this.getContext().getRulePool()
+							.toIPTablesRule());
+					return;
+				}
+			}
+			System.out.println(this.getContext().getRulePool().toString());
 		}
 	}
 
@@ -101,9 +108,9 @@ public class CLI {
 		if (words.length == 2) {
 			if (words[0].equals(UseCommand)) {
 				if (words.length >= 2) {
-					if (words[1] == "whitelist")
+					if (words[1].equals("whitelist"))
 						this.getContext().getRulePool().setWhiteList(true);
-					if (words[1] == "blacklist")
+					if (words[1].equals("blacklist"))
 						this.getContext().getRulePool().setBlackList(true);
 				}
 			}

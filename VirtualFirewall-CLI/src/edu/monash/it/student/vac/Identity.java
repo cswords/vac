@@ -4,7 +4,7 @@ public abstract class Identity {
 
 	public abstract IdentityType getIdentityType();
 
-	public enum IdentityType {
+	public static enum IdentityType {
 		User, Group;
 	}
 

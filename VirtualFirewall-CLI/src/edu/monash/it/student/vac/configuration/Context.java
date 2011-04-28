@@ -7,6 +7,8 @@ import edu.monash.it.student.vac.*;
 
 public class Context {
 
+	public static final String ConfigurationFile = "vac.conf";
+
 	protected static Context currentContext;
 
 	public static Context getCurrent() {
@@ -26,20 +28,20 @@ public class Context {
 	}
 
 	public void saveConfiguration() throws IOException {
-		FileUtils.writeStringToFile(new File("vac.conf"), this.getRulePool()
+		FileUtils.writeStringToFile(new File(ConfigurationFile), this.getRulePool()
 				.toString());
 	}
 
 	public void loadConfiguration() throws IOException {
 		// TODO: load rules from a text file
-		List<String> conf = FileUtils.readLines(new File("vac.conf"));
+		List<String> conf = FileUtils.readLines(new File(ConfigurationFile));
 		for (int i = 0; i < conf.size(); i++) {
 			String rule = conf.get(i);
 			String[] words = rule.split(" ");
 			if (words.length == 0)
 				continue;
 			else {
-				if (words[0].equals("use")) {
+				if (words[0].equals(CLI.UseCommand)) {
 					if (words.length >= 2) {
 						if (words[1] == "whitelist")
 							this.getRulePool().setWhiteList(true);

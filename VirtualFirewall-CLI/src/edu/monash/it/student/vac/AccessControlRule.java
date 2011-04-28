@@ -1,5 +1,6 @@
 package edu.monash.it.student.vac;
 
+import edu.monash.it.student.util.EnumHelper;
 import edu.monash.it.student.vac.Identity.IdentityType;
 
 public class AccessControlRule extends AbstractRule {
@@ -61,7 +62,7 @@ public class AccessControlRule extends AbstractRule {
 		this.operation = operation;
 	}
 
-	public enum Operation {
+	public static enum Operation {
 		DROP, REJECT, ACCEPT
 	}
 
@@ -74,8 +75,11 @@ public class AccessControlRule extends AbstractRule {
 		String[] words = input.split(" ");
 		AccessControlRule rule = new AccessControlRule();
 		if (words.length >= 3) {
-			rule.setOperation(Operation.valueOf(words[0]));
-			IdentityType type = IdentityType.valueOf(words[1]);
+			Operation o=EnumHelper.valueOf(Operation.class, words[0]);
+			if(o==null)
+				return null;
+			rule.setOperation(o);
+			IdentityType type = EnumHelper.valueOf(IdentityType.class, words[1]);
 			Identity i = Identity.Instance(type);
 			i.setName(words[2]);
 			rule.setSource(i);
