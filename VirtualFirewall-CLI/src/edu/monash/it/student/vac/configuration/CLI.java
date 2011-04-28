@@ -83,16 +83,27 @@ public class CLI {
 	}
 
 	/*
-	 * sample: show WTF$%^^ &**_
+	 * sample: show/show iptables/show xyqin1@vac of admin
 	 */
 	public void parseShowCommand(String line) {
 		String[] words = line.split(" ");
 		if (words[0].equals(ShowCommand)) {
-			if (words.length > 1) {
+			if (words.length == 2) {
 				if (words[1].equals("iptables")) {
 					System.out.println(this.getContext().getRulePool()
 							.toIPTablesRule());
 					return;
+				}
+			}
+			if (words.length == 4) {
+				if (words[2].equals("of")) {
+					String[] user = words[1].split("@");
+					if (user.length == 2) {
+						String result = this.getContext().getRulePool()
+								.getCliendCmd(user[1], user[0], words[3]);
+						System.out.println(result);
+						return;
+					}
 				}
 			}
 			System.out.println(this.getContext().getRulePool().toString());
@@ -158,7 +169,8 @@ public class CLI {
 				this.getContext().saveConfiguration();
 				String[] commands = this.getContext().getRulePool()
 						.toIPTablesRule().split("\n");
-				//commands = new String[] { "ping google.com" }; //test the output
+				// commands = new String[] { "ping google.com" }; //test the
+				// output
 				for (String command : commands) {
 					String[] commandWords = command.split(" ");
 					Process child = Runtime.getRuntime().exec(commandWords);
