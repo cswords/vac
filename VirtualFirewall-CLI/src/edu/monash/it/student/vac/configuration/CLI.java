@@ -83,7 +83,7 @@ public class CLI {
 	}
 
 	/*
-	 * sample: show/show iptables/show xyqin1@vac of admin
+	 * sample: show/show iptables/show admin/xyqin1@vac of admin
 	 */
 	public void parseShowCommand(String line) {
 		String[] words = line.split(" ");
