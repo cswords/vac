@@ -1,7 +1,8 @@
 package edu.monash.it.student.vac.configuration;
 
 import java.io.*;
-
+import java.util.List;
+import org.apache.commons.io.FileUtils;
 import edu.monash.it.student.vac.*;
 
 public class CLI {
@@ -34,6 +35,7 @@ public class CLI {
 				getCurrent().parseAclCommand(line);
 				getCurrent().parseExitCommand(line);
 				getCurrent().parseApplyCommand(line);
+				getCurrent().parseHelpCommand(line);
 				// //////////////
 				if (getCurrent().getCurrentService() == null)
 					System.out.print("VAC>");
@@ -57,6 +59,8 @@ public class CLI {
 	public static String UseCommand = "use";
 
 	public static String ServiceCommand = "service";
+
+	public static String HelpCommand = "help";
 
 	public Context getContext() {
 		return Context.getCurrent();
@@ -83,7 +87,8 @@ public class CLI {
 	}
 
 	/*
-	 * sample: show/show iptables/show admin/xyqin1@vac of admin
+	 * sample1: show sample2: show iptables sample3: show admin/xyqin1@vac
+	 * sample4: show current iptables
 	 */
 	public void parseShowCommand(String line) {
 		String[] words = line.split(" ");
@@ -93,15 +98,38 @@ public class CLI {
 					System.out.println(this.getContext().getRulePool()
 							.toIPTablesRule());
 					return;
-				}
-			}
-			if (words.length == 4) {
-				if (words[2].equals("of")) {
-					String[] user = words[1].split("@");
-					if (user.length == 2) {
-						String result = this.getContext().getRulePool()
-								.getCliendCmd(user[1], user[0], words[3]);
-						System.out.println(result);
+				} else if (words[1].equals("run")) {
+					try {
+						String[] commands = new String[] { "iptables", "-L" };
+						for (String command : commands) {
+							String[] commandWords = command.split(" ");
+							Process child = Runtime.getRuntime().exec(
+									commandWords);
+							pipeOutput(child);
+							child.waitFor();
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					return;
+				} else {
+					String group = "";
+					String user = "";
+					String vac = "";
+					String[] tmp = words[1].split("/");
+					if (tmp.length == 2) {
+						group = tmp[0];
+						tmp = tmp[1].split("@");
+					} else {
+						tmp = tmp[0].split("@");
+					}
+					if (tmp.length == 2) {
+						user = tmp[0];
+						vac = tmp[1];
+						System.out.println(this.getContext().getRulePool()
+								.getCliendCmd(vac, user, group));
 						return;
 					}
 				}
@@ -204,4 +232,20 @@ public class CLI {
 		}).start();
 	}
 
+	private static String HelpFile = "doc/help";
+
+	public void parseHelpCommand(String line) {
+		try {
+			String[] words = line.split(" ");
+			if (words[0].equals(HelpCommand)) {
+				List<String> help;
+				help = FileUtils.readLines(new File(HelpFile));
+				for (String l : help) {
+					System.out.println(l);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
