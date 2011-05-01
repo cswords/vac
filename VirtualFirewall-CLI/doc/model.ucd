@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="vac" size="964,593" id="" metadata="uml2-1.0" initialized="true" tag="1000" key="32303037303533312D31303030205669727475616C4669726577616C6C2D434C492F787971696E31">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.1/@sourceConnections.3" name="AbstractRule" location="470,15" size="150,99" id="edu.monash.it.student.vac/AbstractRule" runTimeClassModel="toIPTablesRule(),toString()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="100,36">
+      <children xsi:type="editmodel:MethodEditModel" name="toIPTablesRule" id="edu.monash.it.student.vac/AbstractRule#toIPTablesRule()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="edu.monash.it.student.vac/AbstractRule#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.1 //@children.4/@sourceConnections.2" name="AccessControlRule" location="465,161" size="160,236" id="edu.monash.it.student.vac/AccessControlRule" runTimeClassModel="toIPTablesRule(),Parse(Ljava.lang.String;Ledu.monash.it.student.vac.NetworkService;),edu.monash.it.student.vac.AccessControlRule.Operation,toString()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="100,54">
+      <children xsi:type="editmodel:MethodEditModel" name="Parse" id="edu.monash.it.student.vac/AccessControlRule#Parse(Ljava.lang.String;Ledu.monash.it.student.vac.NetworkService;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toIPTablesRule" id="edu.monash.it.student.vac/AccessControlRule#toIPTablesRule()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="edu.monash.it.student.vac/AccessControlRule#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,109">
+      <children xsi:type="editmodel:EnumerationEditModel" targetConnections="//@children.1/@sourceConnections.4" name="Operation" size="105,107" id="edu.monash.it.student.vac/AccessControlRule$Operation" runTimeClassModel="ACCEPT%,DROP%,REJECT%">
+        <children xsi:type="editmodel:CompartmentEditModel" size="59,54">
+          <children xsi:type="editmodel:EnumerationLiteralEditModel" name="DROP" id="edu.monash.it.student.vac/AccessControlRule$Operation#DROP%"/>
+          <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ACCEPT" id="edu.monash.it.student.vac/AccessControlRule$Operation#ACCEPT%"/>
+          <children xsi:type="editmodel:EnumerationLiteralEditModel" name="REJECT" id="edu.monash.it.student.vac/AccessControlRule$Operation#REJECT%"/>
+        </children>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+      </children>
+    </children>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="edu.monash.it.student.vac/AbstractRule&lt;-edu.monash.it.student.vac/AccessControlRule" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="80,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="75,99"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/AccessControlRule-Standard::Call->edu.monash.it.student.vac/Identity*edu.monash.it.student.vac/AccessControlRule-Soyatec::Import->edu.monash.it.student.vac/Identity" source="//@children.1" target="//@children.2" targetEnd="//@children.1/@sourceConnections.1/@children.2" label="//@children.1/@sourceConnections.1/@children.0" sourceEnd="//@children.1/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="64,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="160,117" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,117"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/AccessControlRule-Standard::Call->edu.monash.it.student.vac/NetworkService*edu.monash.it.student.vac/AccessControlRule-Soyatec::Import->edu.monash.it.student.vac/NetworkService" source="//@children.1" target="//@children.3" targetEnd="//@children.1/@sourceConnections.2/@children.2" label="//@children.1/@sourceConnections.2/@children.0" sourceEnd="//@children.1/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="64,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,117" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="214,117"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/AccessControlRule-Standard::Derive->edu.monash.it.student.vac/AbstractRule" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.3/@children.2" label="//@children.1/@sourceConnections.3/@children.0" sourceEnd="//@children.1/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Derive»" size="43,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="100,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="95,99"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/AccessControlRule-Soyatec::Import->edu.monash.it.student.vac/AccessControlRule$Operation" source="//@children.1" target="//@children.1/@children.2/@children.0" targetEnd="//@children.1/@sourceConnections.4/@children.2" label="//@children.1/@sourceConnections.4/@children.0" sourceEnd="//@children.1/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="160,53" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="105,53"/>
+      <bendpoints secondRelativeDimension="92,-119" firstRelativeDimension="79,0"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.1 //@children.4/@sourceConnections.0" name="Identity" location="780,161" size="150,254" id="edu.monash.it.student.vac/Identity" runTimeClassModel="Instance(Ledu.monash.it.student.vac.Identity.IdentityType;Ljava.lang.String;),name,edu.monash.it.student.vac.Identity.IdentityType,Instance(Ledu.monash.it.student.vac.Identity.IdentityType;),getIdentityType(),toString()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="edu.monash.it.student.vac/Identity#name"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="103,72">
+      <children xsi:type="editmodel:MethodEditModel" name="Instance" id="edu.monash.it.student.vac/Identity#Instance(Ledu.monash.it.student.vac.Identity.IdentityType;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Instance" id="edu.monash.it.student.vac/Identity#Instance(Ledu.monash.it.student.vac.Identity.IdentityType;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getIdentityType" id="edu.monash.it.student.vac/Identity#getIdentityType()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="edu.monash.it.student.vac/Identity#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,91">
+      <children xsi:type="editmodel:EnumerationEditModel" targetConnections="//@children.2/@sourceConnections.0" name="IdentityType" size="120,89" id="edu.monash.it.student.vac/Identity$IdentityType" runTimeClassModel="User%,Group%">
+        <children xsi:type="editmodel:CompartmentEditModel" size="49,36">
+          <children xsi:type="editmodel:EnumerationLiteralEditModel" name="User" id="edu.monash.it.student.vac/Identity$IdentityType#User%"/>
+          <children xsi:type="editmodel:EnumerationLiteralEditModel" name="Group" id="edu.monash.it.student.vac/Identity$IdentityType#Group%"/>
+        </children>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+      </children>
+    </children>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/Identity-Soyatec::Import->edu.monash.it.student.vac/Identity$IdentityType" source="//@children.2" target="//@children.2/@children.2/@children.0" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="150,44" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="120,44"/>
+      <bendpoints secondRelativeDimension="56,-155" firstRelativeDimension="43,0"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.2 //@children.4/@sourceConnections.1" name="NetworkService" location="150,161" size="214,290" id="edu.monash.it.student.vac/NetworkService" runTimeClassModel="edu.monash.it.student.vac.NetworkService.Protocol,id,socketAddress,acl,description,getAclPool(),toString(),parse(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="191,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="acl" id="edu.monash.it.student.vac/NetworkService#acl"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="description" id="edu.monash.it.student.vac/NetworkService#description"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="edu.monash.it.student.vac/NetworkService#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="socketAddress" id="edu.monash.it.student.vac/NetworkService#socketAddress"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="81,54">
+      <children xsi:type="editmodel:MethodEditModel" name="getAclPool" id="edu.monash.it.student.vac/NetworkService#getAclPool()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="parse" id="edu.monash.it.student.vac/NetworkService#parse(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="edu.monash.it.student.vac/NetworkService#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="95,91">
+      <children xsi:type="editmodel:EnumerationEditModel" targetConnections="//@children.3/@sourceConnections.0" name="Protocol" size="95,89" id="edu.monash.it.student.vac/NetworkService$Protocol" runTimeClassModel="TCP%,UDP%">
+        <children xsi:type="editmodel:CompartmentEditModel" size="39,36">
+          <children xsi:type="editmodel:EnumerationLiteralEditModel" name="UDP" id="edu.monash.it.student.vac/NetworkService$Protocol#UDP%"/>
+          <children xsi:type="editmodel:EnumerationLiteralEditModel" name="TCP" id="edu.monash.it.student.vac/NetworkService$Protocol#TCP%"/>
+        </children>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+      </children>
+    </children>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/NetworkService-Soyatec::Import->edu.monash.it.student.vac/NetworkService$Protocol" source="//@children.3" target="//@children.3/@children.2/@children.0" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,18" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+      <bendpoints secondRelativeDimension="-97,-172" firstRelativeDimension="-87,1"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/NetworkService-Soyatec::Import->edu.monash.it.student.vac/AccessControlRule" source="//@children.3" target="//@children.1" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="214,97" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,97"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="RulePool" location="470,540" size="150,225" id="edu.monash.it.student.vac/RulePool" runTimeClassModel="getCliendCmd(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),toIPTablesRule(),removeServiceAt(I),addService(Ledu.monash.it.student.vac.NetworkService;),isBlackList(),setBlackList(Z),toString(),getServiceById(I),whiteList">
+    <children xsi:type="editmodel:CompartmentEditModel" size="107,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="whiteList" id="edu.monash.it.student.vac/RulePool#whiteList"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="114,144">
+      <children xsi:type="editmodel:MethodEditModel" name="addService" id="edu.monash.it.student.vac/RulePool#addService(Ledu.monash.it.student.vac.NetworkService;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCliendCmd" id="edu.monash.it.student.vac/RulePool#getCliendCmd(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getServiceById" id="edu.monash.it.student.vac/RulePool#getServiceById(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isBlackList" id="edu.monash.it.student.vac/RulePool#isBlackList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeServiceAt" id="edu.monash.it.student.vac/RulePool#removeServiceAt(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setBlackList" id="edu.monash.it.student.vac/RulePool#setBlackList(Z)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toIPTablesRule" id="edu.monash.it.student.vac/RulePool#toIPTablesRule()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="edu.monash.it.student.vac/RulePool#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/RulePool-Standard::Call->edu.monash.it.student.vac/Identity" source="//@children.4" target="//@children.2" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="29,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="150,24" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,215"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/RulePool-Standard::Call->edu.monash.it.student.vac/NetworkService*edu.monash.it.student.vac/RulePool-Soyatec::Import->edu.monash.it.student.vac/NetworkService" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="64,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,22" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="214,274"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="edu.monash.it.student.vac/RulePool-Standard::Call->edu.monash.it.student.vac/AccessControlRule*edu.monash.it.student.vac/RulePool-Soyatec::Import->edu.monash.it.student.vac/AccessControlRule" source="//@children.4" target="//@children.1" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="64,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="75,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="80,236"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

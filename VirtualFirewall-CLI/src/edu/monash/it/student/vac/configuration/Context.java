@@ -5,10 +5,17 @@ import java.util.*;
 import org.apache.commons.io.FileUtils;
 import edu.monash.it.student.vac.*;
 
+/**
+ * @author  xyqin1
+ */
 public class Context {
 
 	public static final String ConfigurationFile = "vac.conf";
 
+	/**
+	 * @uml.property  name="currentContext"
+	 * @uml.associationEnd  
+	 */
 	protected static Context currentContext;
 
 	public static Context getCurrent() {
@@ -17,6 +24,10 @@ public class Context {
 		return currentContext;
 	}
 
+	/**
+	 * @uml.property  name="pool"
+	 * @uml.associationEnd  
+	 */
 	private RulePool pool;
 
 	private Context() {

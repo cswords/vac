@@ -1,1 +1,45 @@
 # Help
+*************************
+* Notice: the command lines are case insensitive 
+* but the user name, group name, service host name, 
+* gateway host name and the comments 
+* will be stored and used on the gateway with case information.
+************************
+1. show
+--It will show the current configuration which should be same as the configuration file content.
+2. show iptables
+--It will show the iptables command translated from the current configuration.
+3. show [groupname]/[username]@[gateway]
+--It will show a suggestion of client gateway command with specified user, group. 
+--It is necessary to specify the address or hostname of the gateway where this CLI is running.
+4. use blacklist
+--It will use black list in current configuration.
+5. use whitelist
+--It will use white list in current configuration.
+6. service [service number]
+--It will set the service with given number as current service which is needed by the ACL configuration of this service.
+7. service [any number] [servicehost]:[serviceport] [TCP/UDP] //[Comments]
+--It will create a new service with given host name or address, service port, protocol which could be UDP or TCP, and probably some comment to describe the service.
+--And then set the new service as current service.
+8. [DROP/ACCEPT/REJECT] [user/group] [user or group name]
+--It will set the specified action for the communication from given user or group to the current service as the target.
+--It will do nothing if there is no current service.
+9. apply
+--It will run the iptables command as "show iptables" gives to the system to apply the current configuration as IPTables rules.
+10. exit
+--It will set the current service as nothing.
+11. exit!
+--This CLI will be quit.
+
+
+
+# Key point
+# NAT can be applied every where, but security gateway cannot. 
+# We need to make sure that all the devices attached to the network behind this security gateway are known!
+# This is possible, but it is not 
+
+# Future
+# 0. Acl virtualization: application level on network (between gateways) 
+# 1. Firewall implementation: zones supporting
+# 2. Firewall virtualization: multiple virtual instances supporting
+# 3. Network Virtualization: convert SSH forwarding into a kind of VPN

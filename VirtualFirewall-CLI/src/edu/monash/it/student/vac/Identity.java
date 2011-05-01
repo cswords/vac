@@ -1,11 +1,25 @@
 package edu.monash.it.student.vac;
 
+/**
+ * @author  xyqin1
+ */
 public abstract class Identity {
 
 	public abstract IdentityType getIdentityType();
 
+	/**
+	 * @author   xyqin1
+	 */
 	public static enum IdentityType {
-		User, Group;
+		/**
+		 * @uml.property  name="user"
+		 * @uml.associationEnd  
+		 */
+		User, /**
+		 * @uml.property  name="group"
+		 * @uml.associationEnd  
+		 */
+		Group;
 	}
 
 	private static class UserIdentity extends Identity {
@@ -26,12 +40,23 @@ public abstract class Identity {
 
 	}
 
+	/**
+	 * @uml.property  name="name"
+	 */
 	protected String name;
 
+	/**
+	 * @return
+	 * @uml.property  name="name"
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 * @uml.property  name="name"
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

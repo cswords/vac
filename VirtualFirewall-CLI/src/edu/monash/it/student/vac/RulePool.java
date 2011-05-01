@@ -4,14 +4,28 @@ import java.util.*;
 
 import edu.monash.it.student.vac.Identity.IdentityType;
 
+/**
+ * @author  xyqin1
+ */
 public class RulePool {
 
+	/**
+	 * @uml.property  name="whiteList"
+	 */
 	private boolean whiteList = true;
 
+	/**
+	 * @return
+	 * @uml.property  name="whiteList"
+	 */
 	public boolean isWhiteList() {
 		return whiteList;
 	}
 
+	/**
+	 * @param whiteList
+	 * @uml.property  name="whiteList"
+	 */
 	public void setWhiteList(boolean whiteList) {
 		this.whiteList = whiteList;
 	}

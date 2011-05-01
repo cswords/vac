@@ -5,12 +5,19 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import edu.monash.it.student.vac.*;
 
+/**
+ * @author xyqin1
+ */
 public class CLI {
 
 	private CLI() throws IOException {
 		this.getContext().loadConfiguration();
 	}
 
+	/**
+	 * @uml.property name="instance"
+	 * @uml.associationEnd
+	 */
 	private static CLI instance = null;
 
 	public static CLI getCurrent() throws IOException {
@@ -66,12 +73,24 @@ public class CLI {
 		return Context.getCurrent();
 	}
 
+	/**
+	 * @uml.property name="currentService"
+	 * @uml.associationEnd
+	 */
 	private NetworkService currentService = null;
 
+	/**
+	 * @param currentService
+	 * @uml.property name="currentService"
+	 */
 	public void setCurrentService(NetworkService currentService) {
 		this.currentService = currentService;
 	}
 
+	/**
+	 * @return
+	 * @uml.property name="currentService"
+	 */
 	public NetworkService getCurrentService() {
 		return currentService;
 	}
@@ -237,11 +256,12 @@ public class CLI {
 	public void parseHelpCommand(String line) {
 		try {
 			String[] words = line.split(" ");
-			if (words[0].equals(HelpCommand)) {
+			if (words[0].equals(HelpCommand) | words[0].equals("?")) {
 				List<String> help;
 				help = FileUtils.readLines(new File(HelpFile));
 				for (String l : help) {
-					System.out.println(l);
+					if (!l.startsWith("#"))
+						System.out.println(l);
 				}
 			}
 		} catch (IOException e) {

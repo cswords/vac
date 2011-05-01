@@ -3,12 +3,27 @@ package edu.monash.it.student.vac;
 import edu.monash.it.student.util.EnumHelper;
 import edu.monash.it.student.vac.Identity.IdentityType;
 
+/**
+ * @author  xyqin1
+ */
 public class AccessControlRule extends AbstractRule {
 
+	/**
+	 * @uml.property  name="source"
+	 * @uml.associationEnd  
+	 */
 	protected Identity source;
 
+	/**
+	 * @uml.property  name="target"
+	 * @uml.associationEnd  
+	 */
 	protected NetworkService target;
 
+	/**
+	 * @uml.property  name="operation"
+	 * @uml.associationEnd  
+	 */
 	protected Operation operation;
 
 	@Override
@@ -35,18 +50,34 @@ public class AccessControlRule extends AbstractRule {
 		return result;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="source"
+	 */
 	public Identity getSource() {
 		return source;
 	}
 
+	/**
+	 * @param source
+	 * @uml.property  name="source"
+	 */
 	public void setSource(Identity source) {
 		this.source = source;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="target"
+	 */
 	public NetworkService getTarget() {
 		return target;
 	}
 
+	/**
+	 * @param target
+	 * @uml.property  name="target"
+	 */
 	public void setTarget(NetworkService target) {
 		if (this.getTarget() != null)
 			this.target.getAclPool().remove(this);
@@ -54,16 +85,39 @@ public class AccessControlRule extends AbstractRule {
 		this.target = target;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="operation"
+	 */
 	public Operation getOperation() {
 		return operation;
 	}
 
+	/**
+	 * @param operation
+	 * @uml.property  name="operation"
+	 */
 	public void setOperation(Operation operation) {
 		this.operation = operation;
 	}
 
+	/**
+	 * @author   xyqin1
+	 */
 	public static enum Operation {
-		DROP, REJECT, ACCEPT
+		/**
+		 * @uml.property  name="dROP"
+		 * @uml.associationEnd  
+		 */
+		DROP, /**
+		 * @uml.property  name="rEJECT"
+		 * @uml.associationEnd  
+		 */
+		REJECT, /**
+		 * @uml.property  name="aCCEPT"
+		 * @uml.associationEnd  
+		 */
+		ACCEPT
 	}
 
 	public String toString() {
