@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import edu.monash.it.student.vac.*;
+import edu.monash.it.student.vac.AccessControlRule.Operation;
 
 /**
  * @author xyqin1
@@ -36,19 +37,26 @@ public class CLI {
 			String line = null;
 			System.out.print("VAC>");
 			while (!(line = input.readLine()).trim().equals(ExitCommand + "!")) {
-				getCurrent().parseShowCommand(line);
-				getCurrent().parseServiceCommand(line);
-				getCurrent().parseUseCommand(line);
-				getCurrent().parseAclCommand(line);
-				getCurrent().parseExitCommand(line);
-				getCurrent().parseApplyCommand(line);
-				getCurrent().parseHelpCommand(line);
-				// //////////////
-				if (getCurrent().getCurrentService() == null)
-					System.out.print("VAC>");
-				else
-					System.out.print("VAC(Service "
-							+ getCurrent().getCurrentService().getId() + ")>");
+				try {
+					getCurrent().parseShowCommand(line);
+					getCurrent().parseServiceCommand(line);
+					getCurrent().parseUseCommand(line);
+					getCurrent().parseAclCommand(line);
+					getCurrent().parseExitCommand(line);
+					getCurrent().parseApplyCommand(line);
+					getCurrent().parseHelpCommand(line);
+					getCurrent().parseOtherCommand(line);
+					// //////////////
+					if (getCurrent().getCurrentService() == null)
+						System.out.print("VAC>");
+					else
+						System.out.print("VAC(Service "
+								+ getCurrent().getCurrentService().getId()
+								+ ")>");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		} catch (IOException e) {
@@ -232,12 +240,51 @@ public class CLI {
 		}
 	}
 
-	private static void pipeOutput(Process process) {
+	private boolean isOtherCommand(String firstword) {
+		firstword = firstword.trim().toLowerCase();
+		if (firstword.length() == 0)
+			return false;
+		if (firstword.startsWith(ExitCommand))
+			return false;
+		if (firstword.startsWith(ShowCommand))
+			return false;
+		if (firstword.startsWith(ApplyCommand))
+			return false;
+		if (firstword.startsWith(UseCommand))
+			return false;
+		if (firstword.startsWith(ServiceCommand))
+			return false;
+		if (firstword.startsWith(Operation.ACCEPT.toString().toLowerCase()))
+			return false;
+		if (firstword.startsWith(Operation.DROP.toString().toLowerCase()))
+			return false;
+		if (firstword.startsWith(Operation.REJECT.toString().toLowerCase()))
+			return false;
+		return true;
+	}
+
+	public void parseOtherCommand(String line) {
+		String[] words = line.split(" ");
+		if (!this.isOtherCommand(words[0]))
+			return;
+		try {
+			String[] commandWords = words;
+			Process child = Runtime.getRuntime().exec(commandWords);
+			pipeOutput(child);
+			child.waitFor();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	static void pipeOutput(Process process) {
 		pipe(process.getErrorStream(), System.err);
 		pipe(process.getInputStream(), System.out);
 	}
 
-	private static void pipe(final InputStream src, final PrintStream dest) {
+	static void pipe(final InputStream src, final PrintStream dest) {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
