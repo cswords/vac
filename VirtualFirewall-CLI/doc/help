@@ -30,6 +30,8 @@
 --It will set the current service as nothing.
 11. exit!
 --This CLI will be quit.
+12. Commands which are not starting with not "show", "exit", "service", "use", "drop", "accept", "reject"
+--It will execute same command under the shell. This is mainly designed for network operations.
 
 
 

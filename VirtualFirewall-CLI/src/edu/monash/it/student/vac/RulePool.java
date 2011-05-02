@@ -5,18 +5,18 @@ import java.util.*;
 import edu.monash.it.student.vac.Identity.IdentityType;
 
 /**
- * @author  xyqin1
+ * @author xyqin1
  */
 public class RulePool {
 
 	/**
-	 * @uml.property  name="whiteList"
+	 * @uml.property name="whiteList"
 	 */
 	private boolean whiteList = true;
 
 	/**
 	 * @return
-	 * @uml.property  name="whiteList"
+	 * @uml.property name="whiteList"
 	 */
 	public boolean isWhiteList() {
 		return whiteList;
@@ -24,7 +24,7 @@ public class RulePool {
 
 	/**
 	 * @param whiteList
-	 * @uml.property  name="whiteList"
+	 * @uml.property name="whiteList"
 	 */
 	public void setWhiteList(boolean whiteList) {
 		this.whiteList = whiteList;
@@ -69,6 +69,7 @@ public class RulePool {
 				result += rule.toIPTablesRule() + "\n";
 			}
 		}
+		result += "iptables -A OUTPUT -p TCP --sport 22 -m owner --uid-owner root -j ACCEPT\n";
 		result += this.whiteList ? "iptables -A OUTPUT -j DROP\n"
 				: "iptables -A OUTPUT -j ACCEPT\n";
 		return result;
