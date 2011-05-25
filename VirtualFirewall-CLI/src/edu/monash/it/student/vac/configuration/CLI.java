@@ -254,6 +254,8 @@ public class CLI {
 			return false;
 		if (firstword.startsWith(ServiceCommand))
 			return false;
+		if (firstword.startsWith(HelpCommand) | firstword.startsWith("?"))
+			return false;
 		if (firstword.startsWith(Operation.ACCEPT.toString().toLowerCase()))
 			return false;
 		if (firstword.startsWith(Operation.DROP.toString().toLowerCase()))
