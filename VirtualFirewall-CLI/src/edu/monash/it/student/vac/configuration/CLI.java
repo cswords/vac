@@ -117,8 +117,20 @@ public class CLI {
 		if (words[0].equals(ExitCommand)) {
 			if (this.getCurrentService() != null)
 				this.setCurrentService(null);
-			else
-				System.exit(0);
+			else {
+				if (System.getProperty("user.name").equals("root"))
+					System.exit(0);
+				else {
+					try {
+						String[] commandWords = new String[] { "exit" };
+						Process child = Runtime.getRuntime().exec(commandWords);
+						pipeOutput(child);
+						child.waitFor();
+					} catch (Exception e) {
+						System.out.println("Logout failed.");
+					}
+				}
+			}
 		}
 	}
 
@@ -231,6 +243,7 @@ public class CLI {
 		if (words[0].equals(ApplyCommand)) {
 			try {
 				this.getContext().saveConfiguration();
+				System.out.println("Configuration is saved.");
 				String[] commands = this.getContext().getRulePool()
 						.toIPTablesRule().split("\n");
 				// commands = new String[] { "ping google.com" }; //test the
@@ -241,10 +254,9 @@ public class CLI {
 					pipeOutput(child);
 					child.waitFor();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				System.out
+						.println("Rules are not successfully applied by IPTables. Please check.");
 			}
 		}
 	}
@@ -285,10 +297,9 @@ public class CLI {
 			Process child = Runtime.getRuntime().exec(commandWords);
 			pipeOutput(child);
 			child.waitFor();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out
+					.println("Command is not successfully executed. Please check.");
 		}
 	}
 
