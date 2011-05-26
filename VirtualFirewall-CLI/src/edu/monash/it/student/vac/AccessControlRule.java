@@ -4,25 +4,25 @@ import edu.monash.it.student.util.EnumHelper;
 import edu.monash.it.student.vac.Identity.IdentityType;
 
 /**
- * @author  xyqin1
+ * @author xyqin1
  */
 public class AccessControlRule extends AbstractRule {
 
 	/**
-	 * @uml.property  name="source"
-	 * @uml.associationEnd  
+	 * @uml.property name="source"
+	 * @uml.associationEnd
 	 */
 	protected Identity source;
 
 	/**
-	 * @uml.property  name="target"
-	 * @uml.associationEnd  
+	 * @uml.property name="target"
+	 * @uml.associationEnd
 	 */
 	protected NetworkService target;
 
 	/**
-	 * @uml.property  name="operation"
-	 * @uml.associationEnd  
+	 * @uml.property name="operation"
+	 * @uml.associationEnd
 	 */
 	protected Operation operation;
 
@@ -52,7 +52,7 @@ public class AccessControlRule extends AbstractRule {
 
 	/**
 	 * @return
-	 * @uml.property  name="source"
+	 * @uml.property name="source"
 	 */
 	public Identity getSource() {
 		return source;
@@ -60,7 +60,7 @@ public class AccessControlRule extends AbstractRule {
 
 	/**
 	 * @param source
-	 * @uml.property  name="source"
+	 * @uml.property name="source"
 	 */
 	public void setSource(Identity source) {
 		this.source = source;
@@ -68,7 +68,7 @@ public class AccessControlRule extends AbstractRule {
 
 	/**
 	 * @return
-	 * @uml.property  name="target"
+	 * @uml.property name="target"
 	 */
 	public NetworkService getTarget() {
 		return target;
@@ -76,7 +76,7 @@ public class AccessControlRule extends AbstractRule {
 
 	/**
 	 * @param target
-	 * @uml.property  name="target"
+	 * @uml.property name="target"
 	 */
 	public void setTarget(NetworkService target) {
 		if (this.getTarget() != null)
@@ -87,7 +87,7 @@ public class AccessControlRule extends AbstractRule {
 
 	/**
 	 * @return
-	 * @uml.property  name="operation"
+	 * @uml.property name="operation"
 	 */
 	public Operation getOperation() {
 		return operation;
@@ -95,27 +95,27 @@ public class AccessControlRule extends AbstractRule {
 
 	/**
 	 * @param operation
-	 * @uml.property  name="operation"
+	 * @uml.property name="operation"
 	 */
 	public void setOperation(Operation operation) {
 		this.operation = operation;
 	}
 
 	/**
-	 * @author   xyqin1
+	 * @author xyqin1
 	 */
 	public static enum Operation {
 		/**
-		 * @uml.property  name="dROP"
-		 * @uml.associationEnd  
+		 * @uml.property name="dROP"
+		 * @uml.associationEnd
 		 */
 		DROP, /**
-		 * @uml.property  name="rEJECT"
-		 * @uml.associationEnd  
+		 * @uml.property name="rEJECT"
+		 * @uml.associationEnd
 		 */
 		REJECT, /**
-		 * @uml.property  name="aCCEPT"
-		 * @uml.associationEnd  
+		 * @uml.property name="aCCEPT"
+		 * @uml.associationEnd
 		 */
 		ACCEPT
 	}
@@ -127,15 +127,21 @@ public class AccessControlRule extends AbstractRule {
 
 	public static AccessControlRule Parse(String input, NetworkService service) {
 		String[] words = input.split(" ");
-		AccessControlRule rule = new AccessControlRule();
+		AccessControlRule rule = null;
 		if (words.length >= 3) {
-			Operation o=EnumHelper.valueOf(Operation.class, words[0]);
-			if(o==null)
+			Operation o = EnumHelper.valueOf(Operation.class, words[0]);
+			if (o == null)
 				return null;
+			IdentityType type = EnumHelper
+					.valueOf(IdentityType.class, words[1]);
+			if (type == null)
+				return null;
+			String name = words[2];
+			service.deleteAccessControlRule(o, type, name);
+			rule = new AccessControlRule();
 			rule.setOperation(o);
-			IdentityType type = EnumHelper.valueOf(IdentityType.class, words[1]);
 			Identity i = Identity.Instance(type);
-			i.setName(words[2]);
+			i.setName(name);
 			rule.setSource(i);
 			rule.setTarget(service);
 		}

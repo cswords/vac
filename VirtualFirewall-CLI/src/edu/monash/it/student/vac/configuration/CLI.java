@@ -3,8 +3,11 @@ package edu.monash.it.student.vac.configuration;
 import java.io.*;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
+
+import edu.monash.it.student.util.EnumHelper;
 import edu.monash.it.student.vac.*;
 import edu.monash.it.student.vac.AccessControlRule.Operation;
+import edu.monash.it.student.vac.Identity.IdentityType;
 
 /**
  * @author xyqin1
@@ -76,6 +79,8 @@ public class CLI {
 	public static String ServiceCommand = "service";
 
 	public static String HelpCommand = "help";
+
+	public static String DeleteCommand = "del";
 
 	public Context getContext() {
 		return Context.getCurrent();
@@ -254,6 +259,8 @@ public class CLI {
 			return false;
 		if (firstword.startsWith(ServiceCommand))
 			return false;
+		if (firstword.startsWith(DeleteCommand))
+			return false;
 		if (firstword.startsWith(HelpCommand) | firstword.startsWith("?"))
 			return false;
 		if (firstword.startsWith(Operation.ACCEPT.toString().toLowerCase()))
@@ -315,6 +322,30 @@ public class CLI {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void parseDeleteCommand(String line) {
+		String[] words = line.split(" ");
+		if (words[0].equals(DeleteCommand)) {
+			if (this.getCurrentService() != null & words.length == 4) {
+				NetworkService service = this.getCurrentService();
+				Operation o = EnumHelper.valueOf(Operation.class, words[1]);
+				IdentityType type = EnumHelper.valueOf(IdentityType.class,
+						words[2]);
+				String name = words[2];
+				if (o != null & type != null & words[3].trim().length() > 0)
+					service.deleteAccessControlRule(o, type, name);
+				return;
+			} else if (words[1].equals("service") & words.length > 2) {
+				try {
+					int num = Integer.parseInt(words[2]);
+					this.getContext().getRulePool().removeServiceAt(num);
+				} catch (Exception e) {
+					return;
+				}
+			}
+
 		}
 	}
 }

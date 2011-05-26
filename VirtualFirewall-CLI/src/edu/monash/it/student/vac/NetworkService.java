@@ -6,34 +6,34 @@ import java.util.*;
 import edu.monash.it.student.util.EnumHelper;
 
 /**
- * @author  xyqin1
+ * @author xyqin1
  */
 public class NetworkService {
 
 	/**
-	 * @uml.property  name="socketAddress"
+	 * @uml.property name="socketAddress"
 	 */
 	InetSocketAddress socketAddress;
 
 	/**
-	 * @uml.property  name="description"
+	 * @uml.property name="description"
 	 */
 	protected String description;
 
 	/**
-	 * @uml.property  name="id"
+	 * @uml.property name="id"
 	 */
 	protected int id;
 
 	/**
-	 * @uml.property  name="baseProtocol"
-	 * @uml.associationEnd  
+	 * @uml.property name="baseProtocol"
+	 * @uml.associationEnd
 	 */
 	protected Protocol baseProtocol;
 
 	/**
 	 * @return
-	 * @uml.property  name="socketAddress"
+	 * @uml.property name="socketAddress"
 	 */
 	public InetSocketAddress getSocketAddress() {
 		return socketAddress;
@@ -45,7 +45,7 @@ public class NetworkService {
 	 */
 	/**
 	 * @param socketAddress
-	 * @uml.property  name="socketAddress"
+	 * @uml.property name="socketAddress"
 	 */
 	public void setSocketAddress(InetSocketAddress socketAddress) {
 		this.socketAddress = socketAddress;
@@ -53,7 +53,7 @@ public class NetworkService {
 
 	/**
 	 * @return
-	 * @uml.property  name="description"
+	 * @uml.property name="description"
 	 */
 	public String getDescription() {
 		return description;
@@ -61,7 +61,7 @@ public class NetworkService {
 
 	/**
 	 * @param description
-	 * @uml.property  name="description"
+	 * @uml.property name="description"
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -69,7 +69,7 @@ public class NetworkService {
 
 	/**
 	 * @return
-	 * @uml.property  name="id"
+	 * @uml.property name="id"
 	 */
 	public int getId() {
 		return id;
@@ -77,7 +77,7 @@ public class NetworkService {
 
 	/**
 	 * @param id
-	 * @uml.property  name="id"
+	 * @uml.property name="id"
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -85,7 +85,7 @@ public class NetworkService {
 
 	/**
 	 * @return
-	 * @uml.property  name="baseProtocol"
+	 * @uml.property name="baseProtocol"
 	 */
 	public Protocol getBaseProtocol() {
 		return baseProtocol;
@@ -93,29 +93,29 @@ public class NetworkService {
 
 	/**
 	 * @param baseProtocol
-	 * @uml.property  name="baseProtocol"
+	 * @uml.property name="baseProtocol"
 	 */
 	public void setBaseProtocol(Protocol baseProtocol) {
 		this.baseProtocol = baseProtocol;
 	}
 
 	/**
-	 * @author   xyqin1
+	 * @author xyqin1
 	 */
 	public static enum Protocol {
 		/**
-		 * @uml.property  name="tCP"
-		 * @uml.associationEnd  
+		 * @uml.property name="tCP"
+		 * @uml.associationEnd
 		 */
 		TCP, /**
-		 * @uml.property  name="uDP"
-		 * @uml.associationEnd  
+		 * @uml.property name="uDP"
+		 * @uml.associationEnd
 		 */
 		UDP;
 	}
 
 	/**
-	 * @uml.property  name="acl"
+	 * @uml.property name="acl"
 	 */
 	private Collection<AccessControlRule> acl = new Vector<AccessControlRule>();
 
@@ -125,12 +125,27 @@ public class NetworkService {
 
 	/**
 	 * @return
-	 * @uml.property  name="acl"
+	 * @uml.property name="acl"
 	 */
 	public AccessControlRule[] getAcl() {
 		AccessControlRule[] value = new AccessControlRule[this.acl.size()];
 		value = this.acl.toArray(value);
 		return value;
+	}
+
+	public void deleteAccessControlRule(AccessControlRule.Operation operation,
+			Identity.IdentityType type, String name) {
+		AccessControlRule target = null;
+		for (AccessControlRule rule : this.acl) {
+			if (rule.operation == operation
+					& rule.getSource().getIdentityType() == type
+					& rule.getSource().getName().equals(name)) {
+				target = rule;
+				break;
+			}
+		}
+		if (target != null)
+			this.acl.remove(target);
 	}
 
 	public String toString() {
@@ -147,7 +162,8 @@ public class NetworkService {
 		if (words.length >= 4) {
 			result = new NetworkService();
 			try {
-				result.setBaseProtocol(EnumHelper.valueOf(Protocol.class, words[3]));
+				result.setBaseProtocol(EnumHelper.valueOf(Protocol.class,
+						words[3]));
 				String[] address = words[2].split(":");
 				int port = Integer.parseInt(address[1]);
 				result.setSocketAddress(InetSocketAddress.createUnresolved(
