@@ -30,7 +30,11 @@
 --It will set the current service as nothing.
 11. exit!
 --This CLI will be quit.
-12. Commands which are not starting with not "show", "exit", "service", "use", "drop", "accept", "reject"
+12. del service [n]
+--Delete service of number n.
+13. del accept/drop/reject user/group name
+--Delete access control rule when having a current service. 
+14. Commands which are not starting with not "show", "exit", "service", "use", "drop", "accept", "reject"
 --It will execute same command under the shell. This is mainly designed for network operations.
 
 
