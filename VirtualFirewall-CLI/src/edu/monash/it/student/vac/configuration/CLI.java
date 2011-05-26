@@ -48,6 +48,7 @@ public class CLI {
 					getCurrent().parseExitCommand(line);
 					getCurrent().parseApplyCommand(line);
 					getCurrent().parseHelpCommand(line);
+					getCurrent().parseDeleteCommand(line);
 					getCurrent().parseOtherCommand(line);
 					// //////////////
 					if (getCurrent().getCurrentService() == null)
@@ -114,7 +115,10 @@ public class CLI {
 	public void parseExitCommand(String line) {
 		String[] words = line.split(" ");
 		if (words[0].equals(ExitCommand)) {
-			this.setCurrentService(null);
+			if (this.getCurrentService() != null)
+				this.setCurrentService(null);
+			else
+				System.exit(0);
 		}
 	}
 
@@ -333,7 +337,7 @@ public class CLI {
 				Operation o = EnumHelper.valueOf(Operation.class, words[1]);
 				IdentityType type = EnumHelper.valueOf(IdentityType.class,
 						words[2]);
-				String name = words[2];
+				String name = words[3];
 				if (o != null & type != null & words[3].trim().length() > 0)
 					service.deleteAccessControlRule(o, type, name);
 				return;
