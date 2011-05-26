@@ -122,12 +122,14 @@ public class CLI {
 					System.exit(0);
 				else {
 					try {
-						String[] commandWords = new String[] { "exit" };
+						String[] commandWords = ("pkill -KILL -u " + System
+								.getProperty("user.name")).split(" ");
 						Process child = Runtime.getRuntime().exec(commandWords);
 						pipeOutput(child);
 						child.waitFor();
 					} catch (Exception e) {
-						System.out.println("Logout failed.");
+						System.out
+								.println("Logout failed.");
 					}
 				}
 			}
@@ -156,10 +158,9 @@ public class CLI {
 							pipeOutput(child);
 							child.waitFor();
 						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					} catch (Exception e) {
+						System.out
+								.println("IPTables is not succesfully listed. Please check.");
 					}
 					return;
 				} else {
