@@ -27,7 +27,7 @@
 9. apply
 --It will run the iptables command as "show iptables" gives to the system to apply the current configuration as IPTables rules.
 10. exit
---It will set the current service as nothing.
+--It will set the current service as nothing. If there is no current service, it will exit the cli.
 11. exit!
 --This CLI will be quit.
 12. del service [n]
